@@ -1,0 +1,56 @@
+"0","#| code-fold: true"
+"0","#| warning: false"
+"0","library(plotly)"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","
+Attaching package: ‘plotly’
+
+"
+"2","The following object is masked from ‘package:httr’:
+
+    config
+
+"
+"2","The following object is masked from ‘package:rio’:
+
+    export
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    filter
+
+"
+"2","The following object is masked from ‘package:graphics’:
+
+    layout
+
+"
+"0","result_df$`robos/100k_habitantes` <- as.numeric(result_df$`robos/100k_habitantes`)"
+"0",""
+"0","top_bottom_countries <- result_df %>%"
+"0","  arrange(desc(`robos/100k_habitantes`)) %>%"
+"0","  slice(c(1:8, (n() - 7):n()))"
+"0",""
+"0",""
+"0","top_bottom_countries$Country <- factor(top_bottom_countries$Country, "
+"0","                                       levels = rev(top_bottom_countries$Country))"
+"0",""
+"0","grafico2 <- ggplot(top_bottom_countries, aes(x = reorder(Country, `robos/100k_habitantes`), y = `robos/100k_habitantes`)) +"
+"0","  geom_bar(stat = ""identity"", fill = ""skyblue"") +"
+"0","  labs(title = "" Los 8 países con más/menos robos con violencia "","
+"0","       x = ""Países"","
+"0","       y = ""Robos/100k habitantes"", "
+"0","       caption = ""Fuente: Eurostat"") +"
+"0","  theme_minimal() +"
+"0","  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+"0",""
+"0",""
